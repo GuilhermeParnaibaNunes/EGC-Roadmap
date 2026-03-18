@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>GuiPN | Portfolio</title>
+    <meta name="author" content="Guilherme Parnaíba Nunes">
+    <meta name="description" content="Portfolio of Guilherme Parnaíba Nunes, Computer Science student and Fullstack Developer.">
+    <link rel="icon" type="image/svg+xml" href="src/assets/logos/guipn-dark-logo.png">
+    
+    <link rel="stylesheet" href="src/css/global.css">
+    <link rel="stylesheet" href="src/css/layout.css">
+    <link rel="stylesheet" href="src/css/theme.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+            <a href="#home" aria-label="GuiPN Homepage">
+                <img src="src/assets/logos/guipn-dark-logo.png" alt="GuiPN Logo">
+            </a>
+            </div>
+
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="#home" aria-label="Home">
+                        <img src="src/assets/icons/nav/Home-light.svg" alt="" id="home">
+                        </a>
+                    </li>
+                    <li><a href="#about" aria-label="About">
+                        <img src="src/assets/icons/nav/About-light.svg" alt="" id="about">
+                        </a>
+                    </li>
+                    <li><a href="#projects" aria-label="Projects">
+                        <img src="src/assets/icons/nav/Projects-light.svg" alt="" id="projects">
+                        </a>
+                    </li>
+                    <li><a href="#curriculum" aria-label="Curriculum Vitae">
+                        <img src="src/assets/icons/nav/CV-light.svg" alt="" id="cv">
+                        </a>
+                    </li>
+                    <li><a href="#thoughts" aria-label="Thoughts">
+                        <img src="src/assets/icons/nav/Thoughts-light.svg" alt="" id="thoughts">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="controls">
+                <button class="light-bubble" aria-label="Toggle theme">
+                <img src="src/assets/icons/nav/Dim-OFF-LIGHT.svg" alt="" class="default">
+                <img src="src/assets/icons/nav/Dim-ON-GREEN.svg" alt="" class="hover">
+                </button>
+                <button class="language-flag" aria-label="Change language">
+                    <img src="src/assets/icons/flags/Brasil-flag.svg" alt="" class="default">
+                    <img src="src/assets/icons/flags/USA-flag.svg" alt="" class="hover">
+                </button>
+            </div>   
+        </div>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Hello, I'm Guilherme</h1>
+                <p class="subtitle" id="hero-subtitle">CS student and fullstack developer</p>
+            </div>
+        </section>
+        <section class="projects-preview">
+            <h2>Here are some projects I've been working on</h2>
+            <div class="container">
+                <div class="projects-grid projects-grid--flowing">
+                    <article class="project-card project-card--flowing">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 1 interface">
+                        <p class="subtitle">Project 1</p>
+                    </article>
+                    <article class="project-card project-card--flowing">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 2 interface">
+                        <p class="subtitle">Project 2</p>
+                    </article>
+                    <article class="project-card project-card--flowing">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 3 interface">
+                        <p class="subtitle">Project 3</p>
+                    </article>
+                    <article class="project-card project-card--flowing">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 4 interface">
+                        <p class="subtitle">Project 4</p>
+                    </article>
+                    <article class="project-card project-card--flowing"">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 5 interface">
+                        <p class="subtitle">Project 5</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="projects-details">
+            <h3>Here is some more information about the projects I've been working on</h3>
+            <div class="container">
+                <div class="project-grid project-grid--static">
+                    <article class="project-card project-card--static">
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 1 interface">
+                        <div class="project-card project-card--static--info">
+                            <p class="subtitle">Project 1</p>
+                            <p class="project-static-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Donec cursus dui vel tristique volutpat. Mauris sed consectetur elit. 
+                                In vel consectetur arcu, a egestas sem. </p>
+                        </div>
+                    </article>
+                    <article class="project-card project-card--static">
+                        <div class="project-card project-card--static--info">
+                            <p class="subtitle">Project 2</p>
+                            <p class="project-details-text">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Donec cursus dui vel tristique volutpat. Mauris sed consectetur elit. 
+                                In vel consectetur arcu, a egestas sem. </p>
+                        </div>
+                        <img src="src/assets/images/Light-Quad-BG.png" alt="Screenshot of Project 2 interface">
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p class="footer-text">Designed & Developed by GuiPN</p>
+            <p class="footer-text">Copyright © 2026</p>
+            <div class="socials">
+                <ul>
+                    <li><a href="#github" aria-label="GuiPN GitHub">
+                        <img src="src/assets/icons/socials/GitHub-Light.svg" alt="">
+                        </a>
+                    </li>
+                    <li><a href="#linkedin" aria-label="GuiPN LinkedIn">
+                        <img src="src/assets/icons/socials/LinkedIn-Light.svg" alt="">
+                        </a>
+                    </li>
+                    <li><a href="#instagram" aria-label="GuiPN Instagram">
+                        <img src="src/assets/icons/socials/Instagram-Light.svg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

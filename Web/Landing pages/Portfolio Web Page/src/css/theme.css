@@ -1,0 +1,225 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root {
+
+  /* COLORS */
+
+  --color-bg-global: rgba(25, 25, 25, 1);
+  --color-bg-header-footer: rgba(22, 22, 19, 1);
+
+  --color-text-main: rgba(251, 245, 221, 1);
+  --color-highlight: rgba(0, 255, 171, 1);
+
+
+  /* TYPOGRAPHY SCALE */
+
+  --font-size-h1: 96px;
+  --font-size-h2: 40px;
+  --font-size-h3: 24px;
+}
+
+/* =========================
+   GLOBAL THEME
+========================= */
+
+body {
+  background: var(--color-bg-global);
+  color: var(--color-text-main);
+
+  background-image:
+    linear-gradient(rgb(30, 30, 30) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(30, 30, 30) 1px, transparent 1px),
+
+    linear-gradient(rgba(30, 30, 30, 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 30, 30, 0.7) 1px, transparent 1px);
+
+  background-size: 60px 60px;
+
+  background-position:
+    0 0,
+    0 0,
+    0PX 40px,
+    20px 0px;
+}
+
+/* =========================
+   HEADER & FOOTER
+========================= */
+
+header,
+footer {
+  background: var(--color-bg-header-footer);
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h2, h3 { /* Adding dash effect to Text */
+  background-image: 
+    linear-gradient(to right, var(--color-text-main) 80%, transparent 20%),
+    linear-gradient(to right, var(--color-text-main) 80%, transparent 20%);
+
+  background-position: top, bottom;
+  background-size: 30px 2px; 
+  background-repeat: repeat-x;
+
+  padding: 10px 0px 4px 0px; 
+  margin: 30px 0;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: var(--color-highlight);
+  font-family: var(--font-main);
+  font-synthesis: none;
+  text-transform: uppercase;
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-bold);
+  line-height: 1;
+  letter-spacing: .5px;
+
+    /* Prevents the text from wrapping to a second line when the card shrinks */
+  white-space: nowrap; 
+}
+
+#hero-subtitle {
+    color: var(--color-bg-global);
+}
+
+/* =========================
+   NAV ICONS
+========================= */
+
+nav {
+  transition: all 0.3s ease;
+}
+
+nav img:hover{
+  transform: scale(1.05);
+  filter: brightness(0) saturate(100%) invert(69%) sepia(97%) saturate(382%) hue-rotate(96deg);
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.light-bubble {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.light-bubble img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: opacity 0.3s ease, transform 0.3 ease;
+}
+
+.light-bubble .default {
+    width: 22.7px;
+    height: 32.43px;
+}
+
+.light-bubble .hover {
+    width: 34.78px;
+    height: 38.84px;
+    opacity: 0;
+}
+
+.light-bubble:hover .hover {
+    opacity: 1;
+    transform: translate(-50%, -60%) scale(1.05);
+    /*Hover image is bigger, so it needs to be a little higher*/
+}
+
+.light-bubble:hover .default {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.language-flag {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.language-flag img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.language-flag .hover {
+    opacity: 0;
+}
+
+.language-flag:hover .hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.language-flag:hover .default {
+    opacity: 0;
+}
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.highlight {
+  color: var(--color-highlight);
+}
+
+.highlight-label {
+  background: var(--color-highlight);
+  color: var(--color-bg-global);
+  padding: 4px 8px;
+}
+
+/* =========================
+   PROJECT CARDS
+========================= */
+
+.project-card--flowing,
+.project-card--static {
+  background: var(--color-bg-header-footer);
+}
+
+/* ==============================
+   PROJECT PREVIEW TITLE EFFECT
+================================= */
+
+.project-card--flowing .subtitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  
+  /* Ensures it always sits on top of the image */
+  z-index: 10; 
+}
