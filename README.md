@@ -70,26 +70,35 @@ Each phase follows a repeatable weekly structure:
 programming-roadmap
 │
 ├── C
-│   └── CRUD systems
+│   └── CRUD systems and foundational programming projects
 │
-├── C++
-│   └── Object-oriented systems
+├── Cpp
+│   └── OOP systems and intermediate complexity projects
 │
 ├── Java
-│   └── OOP + database integration
+│   └── OOP systems and database-integrated applications
 │
 ├── Python
-│   └── Automation / scripts / crawlers
+│   └── Automation scripts, web crawlers, and miscellaneous projects
 │
 ├── Web
 │   ├── Landing pages (HTML & CSS)
-│   ├── JavaScript applications
+│   ├── JavaScript-based applications
 │   └── Fullstack experiments
 │
-└── Data-Structures
+├── Data-Structures-Lab
+│   ├── Raw implementations of data structures in C
+│   └── Applied versions using a college CRUD system
+│
+└── Portfolio-Website
+    ├── Versions and iterations of my personal portfolio
+    └── Experiments in layout, design, and frontend development
 ```
 
-Each folder contains projects developed during the roadmap, organized by language and topic.
+Each directory represents a core area of study within the roadmap.  
+Projects are developed progressively, increasing in complexity and integrating new concepts over time.
+
+Some modules, such as **Data Structures Laboratory** and **Portfolio Website**, may evolve into independent repositories as the roadmap progresses.
 
 ---
 
