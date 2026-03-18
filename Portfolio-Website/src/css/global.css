@@ -1,0 +1,72 @@
+/* RESET */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* VARIABLES */
+
+:root {
+  --font-main: "Atkinson Hyperlegible", sans-serif;
+  --font-readable: "Poppins", sans-serif;
+
+  --font-size-base: 24px;
+  --font-bold: 800;
+}
+
+/* BASE */
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+
+/* ELEMENTS */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-main);
+  font-synthesis: none;
+  text-transform: uppercase;
+  font-weight: var(--font-bold);
+}
+
+p {
+  font-family: var(--font-readable);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
