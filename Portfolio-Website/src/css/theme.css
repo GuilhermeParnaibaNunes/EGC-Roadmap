@@ -102,7 +102,15 @@ h2, h3 { /* Adding dash effect to Text */
 }
 
 #hero-subtitle {
-    color: var(--color-bg-global);
+  color: var(--color-bg-global);
+}
+
+.projects-details .subtitle {
+  color: var(--color-bg-global);
+}
+
+.project-static-details-text {
+  font-weight: var(--font-light);
 }
 
 /* =========================
@@ -201,15 +209,6 @@ nav img:hover{
   padding: 4px 8px;
 }
 
-/* =========================
-   PROJECT CARDS
-========================= */
-
-.project-card--flowing,
-.project-card--static {
-  background: var(--color-bg-header-footer);
-}
-
 /* ==============================
    PROJECT PREVIEW TITLE EFFECT
 ================================= */
@@ -222,4 +221,22 @@ nav img:hover{
   
   /* Ensures it always sits on top of the image */
   z-index: 10; 
+}
+
+/* ==============================
+   FOOTER
+================================= */
+.footer-text {
+  font-synthesis: none;
+  font-size: 20px;
+  font-weight: var(--font-light);
+}
+
+footer {
+  transition: all 0.3s ease;
+}
+
+footer img:hover{
+  transform: scale(1.05);
+  filter: brightness(0) saturate(100%) invert(69%) sepia(97%) saturate(382%) hue-rotate(96deg);
 }

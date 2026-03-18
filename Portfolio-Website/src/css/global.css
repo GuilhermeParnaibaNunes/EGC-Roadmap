@@ -19,6 +19,7 @@
 
   --font-size-base: 24px;
   --font-bold: 800;
+  --font-light: 300;
 }
 
 /* BASE */
@@ -46,6 +47,7 @@ button {
 img {
   max-width: 100%;
   display: block;
+  border-radius: 8px; 
 }
 
 ul {
