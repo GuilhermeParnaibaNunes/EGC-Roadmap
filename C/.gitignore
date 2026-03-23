@@ -1,0 +1,12 @@
+# Build files
+*.exe
+*.o
+
+# CodeBlocks
+*.cbp
+*.depend
+*.layout
+
+# Folders
+bin/
+obj/
