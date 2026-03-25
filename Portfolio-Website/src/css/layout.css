@@ -51,6 +51,22 @@ nav img{
   gap: 12px;
 }
 
+.light-bubble img:nth-child(2),
+.light-bubble img:nth-child(4) {
+  display: none;
+}
+
+.darkmode .light-bubble img:nth-child(1),
+.darkmode .light-bubble img:nth-child(3) {
+  display: none;
+}
+
+.darkmode .light-bubble img:nth-child(2),
+.darkmode .light-bubble img:nth-child(4) {
+  display: block;
+}
+
+
 /* LOGO */
 
 .logo {
@@ -62,6 +78,18 @@ nav img{
 
 .logo img {
   height: 140px; /* bigger than header height */
+}
+
+.logo img:last-child {
+  display: none;
+}
+
+.darkmode .logo img:first-child {
+  display: none;
+}
+
+.darkmode .logo img:last-child {
+  display: block;
 }
 
 /* HERO */
@@ -83,8 +111,19 @@ nav img{
 /* PROJECTS PREVIEW */
 
 .projects-preview {
-    display: block;
     padding-bottom: 0rem;
+}
+
+.projects-grid--flowing img:last-child {
+  display: none;
+}
+
+.darkmode .projects-grid--flowing img:first-child {
+  display: none;
+}
+
+.darkmode .projects-grid--flowing img:last-child {
+  display: block;
 }
 
 .projects-grid--flowing {
@@ -181,4 +220,8 @@ footer .container {
 footer ul {
   display: flex;
   gap: 1.5rem;
+}
+
+footer img{
+  border-radius: 0;
 }
