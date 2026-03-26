@@ -6,13 +6,12 @@ public class Edge {
     private String name;
 
     public Edge(String name, Vertex source, Vertex destination){
+        setName(name);
         setVertexSource(source);
         setVertexDestination(destination);
-        setName(name);
     }
 
     public void setName(String name) {
-        if(name != null && !name.trim().isEmpty())
             this.name = name;
     }
 
