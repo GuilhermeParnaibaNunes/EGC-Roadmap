@@ -28,15 +28,20 @@ public class Graph {
             Vertex newV = new Vertex(vName);
             vertices.add(newV);
 
-            List<Vertex> inVList = new ArrayList<>();
-            inVList.add(newV);
-            List<Vertex> outVList = new ArrayList<>();
-            outVList.add(newV);
-            inAdjacencyList.add(inVList);
-            outAdjacencyList.add(outVList);
+            createVerticesAdjacencyLists(newV);
         }
     }
 
+    private void createVerticesAdjacencyLists(Vertex vertex){
+        List<Vertex> inVList = new ArrayList<>();
+        inVList.add(vertex);
+        List<Vertex> outVList = new ArrayList<>();
+        outVList.add(vertex);
+        inAdjacencyList.add(inVList);
+        outAdjacencyList.add(outVList);
+    }
+
+    //TODO: It feels unnecessary to have two versions of addEdges
     public void addEdges(String sourceVName, String destinationVName){
         createEdge("", sourceVName, destinationVName);
     }
@@ -59,18 +64,19 @@ public class Graph {
     }
 
     public void inferDirectedness(Vertex v1, Vertex v2){
-        if(!isDirected){
-            if(isSelfLoop(v1, v2)){
-                isDirected = true;
-            }else{
-                for(Edge edge : edges){
-                    if(isSameDirectionEdge(v1, v2, edge)){
-                        isDirected = true;
-                        break;
-                    }else if(isReverseEdge(v1, v2, edge)){
-                        isDirected = true;
-                        break;
-                    }
+        if(isSelfLoop(v1, v2)){
+            isDirected = true;
+            redoDirectedAdjacencyLists();
+        }else{
+            for(Edge edge : edges){
+                if(isSameDirectionEdge(v1, v2, edge)){
+                    isDirected = true;
+                    redoDirectedAdjacencyLists();
+                    break;
+                }else if(isReverseEdge(v1, v2, edge)){
+                    isDirected = true;
+                    redoDirectedAdjacencyLists();
+                    break;
                 }
             }
         }
@@ -89,8 +95,8 @@ public class Graph {
     }
 
     public Optional<Vertex> searchVertex(String vName){
-        for (Vertex vertex : vertices) {
-            if (vertex.getName().equalsIgnoreCase(vName)) {
+        for(Vertex vertex : vertices) {
+            if(vertex.getName().equalsIgnoreCase(vName)) {
                 return Optional.of(vertex);
             }
         }
@@ -98,8 +104,8 @@ public class Graph {
     }
 
     public Optional<List<Vertex>> searchInVertex(String vName){
-        for (List<Vertex> vertexList : inAdjacencyList) {
-            if (vertexList.getFirst().getName().equalsIgnoreCase(vName)) {
+        for(List<Vertex> vertexList : inAdjacencyList) {
+            if(vertexList.getFirst().getName().equalsIgnoreCase(vName)) {
                 return Optional.of(vertexList);
             }
         }
@@ -114,6 +120,22 @@ public class Graph {
             }
         }
         return Optional.empty();
+    }
+
+    private void redoDirectedAdjacencyLists(){
+        resetAdjacencyLists();
+        for(Edge edge : edges){
+            handleAdjacency(edge.getVertexSource(), edge.getVertexDestination());
+        }
+    }
+
+    private void resetAdjacencyLists(){
+        inAdjacencyList.clear();
+        outAdjacencyList.clear();
+
+        for(Vertex vertex : vertices){
+            createVerticesAdjacencyLists(vertex);
+        }
     }
 
     public void handleAdjacency(Vertex vSource, Vertex vDestination){

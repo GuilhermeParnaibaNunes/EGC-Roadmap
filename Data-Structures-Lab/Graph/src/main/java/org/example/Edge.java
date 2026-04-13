@@ -12,7 +12,7 @@ public class Edge {
     }
 
     public void setName(String name) {
-            this.name = name;
+        this.name = name;
     }
 
     public void setVertexSource(Vertex source) {

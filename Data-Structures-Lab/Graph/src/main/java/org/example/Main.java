@@ -12,6 +12,7 @@ public class Main {
         graph.addEdges("2", "5");
         graph.addEdges("3", "5");
         graph.addEdges("4", "5");
+        graph.addEdges("6", "6");
 
         System.out.println(graph);
     }
