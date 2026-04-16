@@ -135,6 +135,7 @@ public class Graph {
 
         for(Vertex vertex : vertices){
             createVerticesAdjacencyLists(vertex);
+            vertex.resetDegree();
         }
     }
 
@@ -148,12 +149,14 @@ public class Graph {
                 .orElseThrow(() -> new IllegalArgumentException("Vertex " + v2.getName() + "in adjacency list not found."));
 
         v2InAdjacencyList.add(v1);
+        v2.increaseInDegree();
 
         if(!isDirected){
             List<Vertex> v1InAdjacencyList = searchInVertex(v1.getName())
                     .orElseThrow(() -> new IllegalArgumentException("Vertex " + v1.getName() + "in adjacency list not found."));
 
             v1InAdjacencyList.add(v2);
+            v1.increaseInDegree();
         }
     }
 
@@ -162,12 +165,14 @@ public class Graph {
                 .orElseThrow(() -> new IllegalArgumentException("Vertex " + v1.getName() + "in adjacency list not found."));
 
         v1OutAdjacencyList.add(v2);
+        v1.increaseOutDegree();
 
         if(!isDirected){
             List<Vertex> v2OutAdjacencyList = searchOutVertex(v2.getName())
                     .orElseThrow(() -> new IllegalArgumentException("Vertex " + v2.getName() + "in adjacency list not found."));
 
             v2OutAdjacencyList.add(v1);
+            v2.increaseOutDegree();
         }
     }
 
@@ -186,7 +191,7 @@ public class Graph {
         sb.append("***Is directed? ").append(isDirected).append("\n\n");
         sb.append("***Vertices:\n");
         for (Vertex v : vertices) {
-            sb.append("\t - ").append(v.getName()).append("\n");
+            sb.append("\t - ").append(v.getName()).append("(").append(v.getDegree().get("Degree")).append(")\n");
         }
         sb.append("Total number of vertices: ").append(getNumberOfVertices());
         sb.append("\n\n***Edges:\n");
