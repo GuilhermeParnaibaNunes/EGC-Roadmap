@@ -103,7 +103,7 @@ public class Graph {
         return Optional.empty();
     }
 
-    public Optional<List<Vertex>> searchInVertex(String vName){
+    public Optional<List<Vertex>> searchInVertexList(String vName){
         for(List<Vertex> vertexList : inAdjacencyList) {
             if(vertexList.getFirst().getName().equalsIgnoreCase(vName)) {
                 return Optional.of(vertexList);
@@ -113,7 +113,7 @@ public class Graph {
     }
 
     //TODO: DUPLICATED CODE, MAY FIND A WAY TO PASS xAdjacencyList as an argument to inner function
-    public Optional<List<Vertex>> searchOutVertex(String vName){
+    public Optional<List<Vertex>> searchOutVertexList(String vName){
         for (List<Vertex> vertexList : outAdjacencyList) {
             if (vertexList.getFirst().getName().equalsIgnoreCase(vName)) {
                 return Optional.of(vertexList);
@@ -145,14 +145,14 @@ public class Graph {
     }
 
     private void handleInAdjacency(Vertex v1, Vertex v2){
-        List<Vertex> v2InAdjacencyList = searchInVertex(v2.getName())
+        List<Vertex> v2InAdjacencyList = searchInVertexList(v2.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Vertex " + v2.getName() + "in adjacency list not found."));
 
         v2InAdjacencyList.add(v1);
         v2.increaseInDegree();
 
         if(!isDirected){
-            List<Vertex> v1InAdjacencyList = searchInVertex(v1.getName())
+            List<Vertex> v1InAdjacencyList = searchInVertexList(v1.getName())
                     .orElseThrow(() -> new IllegalArgumentException("Vertex " + v1.getName() + "in adjacency list not found."));
 
             v1InAdjacencyList.add(v2);
@@ -161,14 +161,14 @@ public class Graph {
     }
 
     private void handleOutAdjacency(Vertex v1, Vertex v2){
-        List<Vertex> v1OutAdjacencyList = searchOutVertex(v1.getName())
+        List<Vertex> v1OutAdjacencyList = searchOutVertexList(v1.getName())
                 .orElseThrow(() -> new IllegalArgumentException("Vertex " + v1.getName() + "in adjacency list not found."));
 
         v1OutAdjacencyList.add(v2);
         v1.increaseOutDegree();
 
         if(!isDirected){
-            List<Vertex> v2OutAdjacencyList = searchOutVertex(v2.getName())
+            List<Vertex> v2OutAdjacencyList = searchOutVertexList(v2.getName())
                     .orElseThrow(() -> new IllegalArgumentException("Vertex " + v2.getName() + "in adjacency list not found."));
 
             v2OutAdjacencyList.add(v1);
@@ -184,12 +184,63 @@ public class Graph {
         return edges.size();
     }
 
+    public String AdjacencyMatrixToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n***Adjacency Matrix***\n");
+        sb.append("\t| X"); // Begin header
+        for(Vertex v : vertices){
+            sb.append(" | ").append(v.getName());
+        }
+        sb.append(" |"); //End header
+
+        for(int i = 0; i < vertices.size(); i++){ //Begin lines
+            sb.append("\n\t| ").append(vertices.get(i).getName()); //Column header
+
+            for(int j = 0; j < vertices.size(); j++){
+                final int index = j;
+
+                sb.append(" | ");
+                if(outAdjacencyList.get(i).stream().skip(1).anyMatch(vS -> vS.equals(vertices.get(index)))){
+                    sb.append("1");
+                }else {
+                    sb.append("0");
+                }
+            }
+            sb.append(" |"); //End lines
+        }
+
+        return sb.toString();
+    }
+
+    public String IncidenceMatrixToString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n***Incidence Matrix***\n");
+        sb.append("\t| X"); // Begin header
+        int i = 1;
+        for(Edge e : edges){
+            sb.append(" | ").append(e.getName().isEmpty() ? ("e" + i++) : e.getName());
+        }
+        sb.append(" |"); //End header
+
+        for(i = 0; i < vertices.size(); i++) { //Begin lines
+            sb.append("\n\t| ").append(vertices.get(i).getName()); //Column header
+
+            for(Edge edge : edges) {
+                sb.append(" | ").append(vertices.get(i).equals(edge.getVertexSource()) ?
+                        "-1" : vertices.get(i).equals(edge.getVertexDestination()) ? "+1" : "00");
+            }
+            sb.append(" |"); //End lines
+        }
+
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("***Graph***\n\n");
         sb.append("***Is directed? ").append(isDirected).append("\n\n");
-        sb.append("***Vertices:\n");
+        sb.append("***Vertices (Degree):\n");
         for (Vertex v : vertices) {
             sb.append("\t - ").append(v.getName()).append("(").append(v.getDegree().get("Degree")).append(")\n");
         }
@@ -207,6 +258,10 @@ public class Graph {
                 sb.append(" -> [").append(outVList.get(i).getName()).append("]");
             }
         }
+
+        sb.append("\n\n").append(AdjacencyMatrixToString());
+        sb.append("\n\n").append(IncidenceMatrixToString());
+
         return sb.toString();
     }
 }
