@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -184,23 +185,28 @@ public class Graph {
         return edges.size();
     }
 
-    public String AdjacencyMatrixToString(){
+    public String adjacencyMatrixToString(){
+        List<Vertex> orderedVertices = vertices.stream().sorted(Comparator.comparing(Vertex::getName)).toList();
+        List<Vertex> outOrderedVertices;
+
         StringBuilder sb = new StringBuilder();
         sb.append("\n***Adjacency Matrix***\n");
         sb.append("\t| X"); // Begin header
-        for(Vertex v : vertices){
+        for(Vertex v : orderedVertices){
             sb.append(" | ").append(v.getName());
         }
         sb.append(" |"); //End header
 
         for(int i = 0; i < vertices.size(); i++){ //Begin lines
-            sb.append("\n\t| ").append(vertices.get(i).getName()); //Column header
+            sb.append("\n\t| ").append(orderedVertices.get(i).getName()); //Column header
+            outOrderedVertices = searchOutVertexList(orderedVertices.get(i).getName())
+                .orElseThrow(() -> new IllegalArgumentException("Vertex in adjacency list not found."));
 
             for(int j = 0; j < vertices.size(); j++){
                 final int index = j;
 
                 sb.append(" | ");
-                if(outAdjacencyList.get(i).stream().skip(1).anyMatch(vS -> vS.equals(vertices.get(index)))){
+                if(outOrderedVertices.stream().skip(1).anyMatch(vS -> vS.equals(orderedVertices.get(index)))){
                     sb.append("1");
                 }else {
                     sb.append("0");
@@ -212,22 +218,25 @@ public class Graph {
         return sb.toString();
     }
 
-    public String IncidenceMatrixToString(){
+    public String incidenceMatrixToString(){
+        List<Vertex> orderedVertices = vertices.stream().sorted(Comparator.comparing(Vertex::getName)).toList();
+        List<Edge> orderedEdges = edges.stream().sorted(Comparator.comparing(Edge::getName)).toList();
+
         StringBuilder sb = new StringBuilder();
         sb.append("\n***Incidence Matrix***\n");
         sb.append("\t| X"); // Begin header
         int i = 1;
-        for(Edge e : edges){
+        for(Edge e : orderedEdges){
             sb.append(" | ").append(e.getName().isEmpty() ? ("e" + i++) : e.getName());
         }
         sb.append(" |"); //End header
 
         for(i = 0; i < vertices.size(); i++) { //Begin lines
-            sb.append("\n\t| ").append(vertices.get(i).getName()); //Column header
+            sb.append("\n\t| ").append(orderedVertices.get(i).getName()); //Column header
 
-            for(Edge edge : edges) {
-                sb.append(" | ").append(vertices.get(i).equals(edge.getVertexSource()) ?
-                        "-1" : vertices.get(i).equals(edge.getVertexDestination()) ? "+1" : "00");
+            for(Edge edge : orderedEdges) {
+                sb.append(" | ").append(orderedVertices.get(i).equals(edge.getVertexSource()) ?
+                        "-1" : orderedVertices.get(i).equals(edge.getVertexDestination()) ? "+1" : "00");
             }
             sb.append(" |"); //End lines
         }
@@ -259,8 +268,8 @@ public class Graph {
             }
         }
 
-        sb.append("\n\n").append(AdjacencyMatrixToString());
-        sb.append("\n\n").append(IncidenceMatrixToString());
+        sb.append("\n\n").append(adjacencyMatrixToString());
+        sb.append("\n\n").append(incidenceMatrixToString());
 
         return sb.toString();
     }
